@@ -22,11 +22,11 @@ android {
         }
     }  
     flavorDimensions("brand")
-    productFlavors{
-       create("brand1"){
+    productFlavors {
+       create("brand1") {
             setDimension("brand")
         }
-        create("brand2"){
+        create("brand2") {
             setDimension("brand")
         }
      }
