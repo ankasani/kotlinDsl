@@ -20,13 +20,17 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
+        getByName("store") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
     }  
     flavorDimensions("brand")
-    productFlavors {
-       create("brand1") {
+    productFlavors{
+       create("brand1"){
             setDimension("brand")
         }
-        create("brand2") {
+        create("brand2"){
             setDimension("brand")
         }
      }
