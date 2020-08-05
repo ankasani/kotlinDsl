@@ -22,16 +22,15 @@ android {
         }
     }
     
-    flavorDimensions("default")
+    flavorDimensions("brand")
     productFlavors {
-        create("dev") {
-            versionNameSuffix = " DEV"
+        create("brand1") {
+            setDimension("brand")
         }
-        create("prod")
-        create("sim") {
-            versionNameSuffix = " DEV-SIMULATED"
+        create("brand2") {
+            setDimension("brand")
         }
-    }
+     }
 }
 
 dependencies {
