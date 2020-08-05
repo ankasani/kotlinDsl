@@ -20,31 +20,16 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-    }
-    
-    //flavorDimensions("brand")
-    //productFlavors {
-     //   create("brand1") {
-      //      setDimension("brand")
-       // }
-      //  create("brand2") {
-       //     setDimension("brand")
-       // }
-     //}
-    
-             flavorDimensions "version"
-               productFlavors {
-                   dev {
-                       dimension "version"
-                       applicationIdSuffix = ".dev"
-                       versionNameSuffix "-dev"
-                       resValue "string", "Stadium", "Stadium dev"
-                   }
-                   prod {
-                       dimension "version"
-                       resValue "string", "Stadium", "Stadium"
-                   }
-               }
+    }  
+    flavorDimensions("brand")
+    productFlavors {
+       create("brand1") {
+            setDimension("brand")
+        }
+        create("brand2") {
+            setDimension("brand")
+        }
+     }
 }
 
 dependencies {
