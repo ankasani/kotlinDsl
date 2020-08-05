@@ -1,36 +1,90 @@
 plugins {
-    id(Plugins.androidApplication)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    id(BuildPlugins.androidApplication)
+    id(BuildPlugins.kotlinAndroidPlugin)
+    id(BuildPlugins.kotlinAndroidExtensionsPlugin)
+    id(BuildPlugins.kotlinAndroidKaptPlugin)
+    id(BuildPlugins.googleServicesPlugin)
+    id(BuildPlugins.crashlyticsPlugin)
+    id(BuildPlugins.safeArgsPlugin)
 }
 
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
+    compileSdkVersion(AndroidSdk.compileApi)
+    buildToolsVersion(AndroidSdk.buildTools)
     defaultConfig {
-        applicationId = Config.applicatiınId
-        minSdkVersion(Versions.minSdkVersion)
-        targetSdkVersion(Versions.targetSdkVersion)
-        versionCode = Release.versionCode
-        versionName = Release.versionName
-        testInstrumentationRunner = Config.testInstrumentationRunner
+        minSdkVersion(AndroidSdk.minApi)
+        targetSdkVersion(AndroidSdk.targetApi)
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments.apply {
+                    put("room.schemaLocation", "$projectDir/schemas")
+                    put("room.incremental", "true")
+                    put("room.expandProjection", "true")
+                }
+            }
+        }
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
+    }
+
+    flavorDimensions("default")
+    productFlavors {
+        create("dev") {
+            versionNameSuffix = " DEV"
+        }
+        create("prod")
+        create("sim") {
+            versionNameSuffix = " DEV-SIMULATED"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    testOptions {
+        unitTests.isReturnDefaultValues = true
     }
 }
 
 dependencies {
-    // Core Libraries
-    implementation(CoreLibraries.kotlin)
+    implementation(Libraries.kotlinStdLib)
+    implementation(Libraries.coroutines)
+    implementation(Libraries.material)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.ktxCore)
+    implementation(Libraries.constraintLayout)
+    koin()
+    lifecycle()
+    navigation()
+    network()
+    firebase()
+    room()
+    implementation(Libraries.swiperefreshlayout)
+    implementation(Libraries.coroutinesPlayServices)
 
-    // Support Libraries
-    implementation(SupportLibraries.appCompat)
-
-    // Testing
-    testImplementation(TestLibraries.jUnit)
-    androidTestImplementation(TestLibraries.runnner)
-    androidTestImplementation(TestLibraries.espressoCore)
+    testImplementation(TestLibraries.junit4)
+    testImplementation(TestLibraries.coroutinesTesting)
+    testImplementation(TestLibraries.testing)
+    testImplementation(TestLibraries.mockitoKotlin)
+    androidTestImplementation(TestLibraries.testRunner)
+    androidTestImplementation(TestLibraries.espresso)
+    androidTestImplementation(TestLibraries.testing)
+    androidTestImplementation(TestLibraries.junit4)
+    androidTestImplementation(TestLibraries.mockitoKotlin)
+    androidTestImplementation(TestLibraries.coroutinesTesting)
 }
