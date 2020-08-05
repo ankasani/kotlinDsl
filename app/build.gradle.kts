@@ -22,15 +22,29 @@ android {
         }
     }
     
-    flavorDimensions("brand")
-    productFlavors {
-        create("brand1") {
-            setDimension("brand")
-        }
-        create("brand2") {
-            setDimension("brand")
-        }
-     }
+    //flavorDimensions("brand")
+    //productFlavors {
+     //   create("brand1") {
+      //      setDimension("brand")
+       // }
+      //  create("brand2") {
+       //     setDimension("brand")
+       // }
+     //}
+    
+             flavorDimensions "version"
+               productFlavors {
+                   dev {
+                       dimension "version"
+                       applicationIdSuffix = ".dev"
+                       versionNameSuffix "-dev"
+                       resValue "string", "Stadium", "Stadium dev"
+                   }
+                   prod {
+                       dimension "version"
+                       resValue "string", "Stadium", "Stadium"
+                   }
+               }
 }
 
 dependencies {
