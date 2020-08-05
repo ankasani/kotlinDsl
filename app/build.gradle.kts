@@ -1,3 +1,4 @@
+apply plugin: 'com.android.application'
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinAndroidPlugin)
