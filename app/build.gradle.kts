@@ -16,18 +16,18 @@ android {
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
     buildTypes {
-        getByName("release") {
+        getByName ("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }  
-    flavorDimensions("brand")
+    flavorDimensions ("brand")
     productFlavors {
-       create("brand1") {
-            setDimension("brand")
+       create ("brand1") {
+            setDimension ("brand")
         }
-        create("brand2") {
-            setDimension("brand")
+        create ("brand2") {
+            setDimension ("brand")
         }
      }
 }
