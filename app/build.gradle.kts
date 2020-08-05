@@ -21,6 +21,17 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+    
+    flavorDimensions("default")
+    productFlavors {
+        create("dev") {
+            versionNameSuffix = " DEV"
+        }
+        create("prod")
+        create("sim") {
+            versionNameSuffix = " DEV-SIMULATED"
+        }
+    }
 }
 
 dependencies {
