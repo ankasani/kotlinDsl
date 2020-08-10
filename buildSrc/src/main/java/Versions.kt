@@ -3,9 +3,9 @@ object Release {
      val versionMajor = 0
      val versionMinor = 0
      val versionPatch = 0
-     val versionBuild = 1
+     val versionBuild = 2
      val versionCode = versionMajor*10000 + versionMinor*1000 + versionPatch*100 + versionBuild
-    val versionName = "1.0.0"
+    val versionName = "2.0.0"
 }
 
 object Versions {
