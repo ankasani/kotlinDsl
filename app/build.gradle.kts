@@ -11,7 +11,8 @@ android {
         applicationId = Config.applicationId
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
-        versionCode = Release.versionCode
+        //versionCode = Release.versionCode
+        versionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName = Release.versionName
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
