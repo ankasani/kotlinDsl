@@ -11,8 +11,8 @@ android {
         applicationId = Config.applicationId
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
-       // versionCode = Release.versionCode
-        versionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionCode = Release.versionCode
+        //versionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName = Release.versionName
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
@@ -22,15 +22,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }  
-    flavorDimensions ("brand")
+    flavorDimensions("default")
     productFlavors {
-       create ("brand1") {
-            setDimension ("brand")
+        create("dev") {
+            versionNameSuffix = " DEV"
         }
-        create ("brand2") {
-            setDimension ("brand")
+        create("prod")
+        create("sim") {
+            versionNameSuffix = " DEV-SIMULATED"
         }
-     }
+    }
 }
 
 dependencies {
