@@ -12,8 +12,8 @@ android {
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
         versionCode = Release.versionCode
-        //versionName = Release.versionName
-        versionName = "@ # $ % ^ * - +"
+        versionName = Release.versionName
+        //versionName = "@ # $ % ^ * - +"
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
     buildTypes {
