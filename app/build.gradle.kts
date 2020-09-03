@@ -13,7 +13,7 @@ android {
         targetSdkVersion(Versions.targetSdkVersion)
         versionCode = Release.versionCode
         //versionName = Release.versionName
-          versionName = ^1
+          versionName = &1
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
     buildTypes {
