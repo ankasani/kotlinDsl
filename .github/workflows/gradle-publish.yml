@@ -27,5 +27,5 @@ jobs:
     - name: Upload a Build Artifact
     - uses: actions/upload-artifact@v2
       with:
-       name: my-artifact
-       path: /home/runner/work/kotlinDsl/kotlinDsl/**/*.apk
+        name: my-artifact
+        path: /home/runner/work/kotlinDsl/kotlinDsl/**/*.apk
