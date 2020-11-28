@@ -4,8 +4,8 @@
 name: Gradle Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ master ]
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
-      run: gradlew clean :app:assembleProdRelease
+      run: /home/runner/work/kotlinDsl/kotlinDsl/gradlew clean :app:assembleProdRelease
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
