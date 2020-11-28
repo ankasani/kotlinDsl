@@ -22,4 +22,4 @@ jobs:
         uses: cloud-egl/AppCenter-actions-with-output@v2.1.0
         with:
          command: appcenter build branches show -a mskasani/DroidAppSampleXamarin -b master --debug
-         token: 4b00c3392e453adc9b290cc26cac63caafe5f00e
+         token: 4b00c3392e453adc9b290cc26cac63caafe5f00e1
