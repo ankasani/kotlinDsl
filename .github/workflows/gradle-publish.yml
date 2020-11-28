@@ -23,7 +23,10 @@ jobs:
 
     - name: Build with Gradle
       run: /home/runner/work/kotlinDsl/kotlinDsl/gradlew clean :app:assembleProdRelease
-      
+    
+    - name: Sign apk
+      run: apksigner sign --ks /home/runner/work/kotlinDsl/kotlinDsl/ankasani.keystore --ks-key-alias ankasani --ks-pass P2ssw0rd --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled false -v /home/runner/work/kotlinDsl/kotlinDsl/app/build/outputs/apk/prod/release/app-prod-release-unsigned.apk
+    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
