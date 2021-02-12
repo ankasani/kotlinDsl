@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id(BuildPlugins.androidApplication)
+    //id(BuildPlugins.androidApplication)
     kotlin(BuildPlugins.android)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kotlinKapt)
