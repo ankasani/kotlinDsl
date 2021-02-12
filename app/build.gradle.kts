@@ -1,4 +1,5 @@
 plugins {
+    id("com.android.application")
     id(BuildPlugins.androidApplication)
     kotlin(BuildPlugins.android)
     id(BuildPlugins.kotlinAndroidExtensions)
