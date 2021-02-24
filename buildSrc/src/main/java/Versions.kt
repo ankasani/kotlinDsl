@@ -20,7 +20,7 @@ object Versions {
     /**
      * Dependency Versions
      */
-    const val gradleVersion = "3.2.1"
+    const val gradleVersion = "4.0.0"
     const val kotlinVersion = "1.3.11"
     const val appCompatVersion = "28.0.0"
     const val jUnitVersion = "4.12"
