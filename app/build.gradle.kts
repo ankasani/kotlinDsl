@@ -1,5 +1,5 @@
 plugins {
-    id(BuildPlugins.androidApplication)
+    id("com.android.application")
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kotlinAnnotationProcessor)
