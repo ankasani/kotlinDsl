@@ -1,85 +1,48 @@
+//apply plugin: 'com.android.application'
 plugins {
     id("com.android.application")
-    id(BuildPlugins.kotlinAndroid)
-    id(BuildPlugins.kotlinAndroidExtensions)
-    id(BuildPlugins.kotlinAnnotationProcessor)
-    id(BuildPlugins.androidxNavSafeArgs)
-    id(BuildPlugins.pluginGoogleService)
-    id(BuildPlugins.plugin_crashlytics)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinAndroidExtensions)
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdkVersion(Versions.compileSdkVersion)
     defaultConfig {
-        applicationId = ApplicationId.id
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.targetSdk)
-        versionCode = Releases.versionCode
-        versionName = Releases.versionName
-        multiDexEnabled = true
+        applicationId = Config.applicationId
+        minSdkVersion(Versions.minSdkVersion)
+        targetSdkVersion(Versions.targetSdkVersion)
+        versionCode = Release.versionCode
+        versionName = Release.versionName
+        //versionName = "@ # $ % ^ * - +"
+        testInstrumentationRunner = Config.testInstrumentationRunner
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
-        getByName("release") {
-            resValue("string", "app_name", "kitchen-display-service-android")
+        getByName ("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-
-            extra.set("enableCrashlytics", true)
-            manifestPlaceholders = mapOf("crashlyticsCollectionEnabled" to "true")
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-
-        getByName("debug") {
-            buildConfigField("boolean", "MYVALUE", "true")
-            resValue("string", "app_name", "KDS Debug")
-            applicationIdSuffix = ".debug"
-
-            extra.set("enableCrashlytics", false)
-            manifestPlaceholders = mapOf("crashlyticsCollectionEnabled" to "false")
-        }
-    }
-
-    flavorDimensions("odoo")
+    }  
+    flavorDimensions("default")
     productFlavors {
-        create(Flavor.SIT) {
-            setDimension("odoo")
-            buildConfigField("String", "ODOO_URL", Environment.ODOO_SIT)
+        create("dev") {
+            versionNameSuffix = " DEV"
         }
-
-        create(Flavor.STAGING) {
-            setDimension("odoo")
-            buildConfigField("String", "ODOO_URL", Environment.ODOO_STAGING)
+        create("prod")
+        create("sim") {
+            versionNameSuffix = " DEV-SIMULATED"
         }
-
-        create(Flavor.PROD) {
-            setDimension("odoo")
-            buildConfigField("String", "ODOO_URL", Environment.ODOO_PROD)
-        }
-    }
-
-    buildFeatures {
-        dataBinding = true
-        viewBinding = true
     }
 }
 
 dependencies {
-    implementation(project(Modules.core))
-    implementation(project(Modules.datasource))
-    implementation(project(Modules.featureMain))
+    // Core Libraries
+    implementation(CoreLibraries.kotlin)
 
-    // Firebase
-    api(Dependencies.firebaseAnalytics)
-    api(Dependencies.firebaseMessaging)
-    api(Dependencies.firebaseCrashlytics)
-    implementation(project(Modules.featureHome))
-    implementation(project(Modules.featureLogin))
+    // Support Libraries
+    implementation(SupportLibraries.appCompat)
+
+    // Testing
+    testImplementation(TestLibraries.jUnit)
+    androidTestImplementation(TestLibraries.runnner)
+    androidTestImplementation(TestLibraries.espressoCore)
 }
