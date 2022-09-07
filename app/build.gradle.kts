@@ -18,7 +18,7 @@ android {
         testInstrumentationRunner = Config.testInstrumentationRunner
     }
     buildTypes {
-        getByName ("release") {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
