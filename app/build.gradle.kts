@@ -1,6 +1,6 @@
 //apply plugin: 'com.android.application'
 plugins {
-    id("com.android.application")
+    id(Plugins.application)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
 }
