@@ -23,7 +23,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }  
-    flavorDimensions("default")
+    flavorDimensions += "default"
     productFlavors {
         create("dev") {
             versionNameSuffix = " DEV"
