@@ -1,3 +1,4 @@
+//apply plugin: 'com.android.application'
 plugins {
     id(Plugins.application)
     kotlin(Plugins.android)
