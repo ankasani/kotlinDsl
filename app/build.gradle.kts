@@ -1,10 +1,9 @@
-//apply plugin: 'com.android.application'
 plugins {
     id(Plugins.application)
+    kotlin(Plugins.android)
+    id(Plugins.kotlinKapt)
     id(Plugins.kotlinAndroid)
-    kotlin(Plugins.android) 
-    id(Plugins.kotlinAndroidExtensions)
-    id(plugins.daggerHilt)
+    id(Plugins.daggerHilt)
 }
 
 android {
