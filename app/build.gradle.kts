@@ -31,14 +31,22 @@ android {
         }
     }
     
-    flavorDimensions += "default"
+    flavorDimensions += "version"
     productFlavors {
-        create("dev") {
-            versionNameSuffix = " DEV"
+        create("demo") {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
         }
-        create("prod")
-        create("sim") {
-            versionNameSuffix = " DEV-SIMULATED"
+
+        create("full") {
+            dimension = "version"
+            applicationIdSuffix = ".full"
+            versionNameSuffix = "-full"
         }
     }
 }
