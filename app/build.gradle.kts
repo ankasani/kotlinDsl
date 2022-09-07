@@ -19,12 +19,18 @@ android {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
     }
+    
     buildTypes {
-        getByName ("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+
+        getByName("release") {
+            isMinifyEnabled = true // Enables code shrinking for the release build type.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
         }
-    }  
+    }
+    
     flavorDimensions += "default"
     productFlavors {
         create("dev") {
