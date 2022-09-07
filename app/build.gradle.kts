@@ -1,14 +1,14 @@
-//apply plugin: 'com.android.application'
 plugins {
     id(Plugins.application)
+    kotlin(Plugins.android)
+    id(Plugins.kotlinKapt)
     id(Plugins.kotlinAndroid)
-    kotlin(Plugins.android) 
-    id(Plugins.kotlinAndroidExtensions)
     id(Plugins.daggerHilt)
 }
 
 android {
-   namespace = AppConfig.namespace
+
+    namespace = AppConfig.namespace
     compileSdk = AppConfig.compileSdk
     buildToolsVersion = AppConfig.buildToolsVersion
 
