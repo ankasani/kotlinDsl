@@ -4,7 +4,7 @@ plugins {
     id(Plugins.kotlinAndroid)
     kotlin(Plugins.android) 
     id(Plugins.kotlinAndroidExtensions)
-    id(plugins.daggerHilt)
+    id(Plugins.daggerHilt)
 }
 
 android {
