@@ -31,7 +31,7 @@ android {
         }
     }
     
-    flavorDimensions += "version"
+    flavorDimensions ("version")
     productFlavors {
         create("demo") {
             // Assigns this product flavor to the "version" flavor dimension.
