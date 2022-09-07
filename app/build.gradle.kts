@@ -1,49 +1,68 @@
-//apply plugin: 'com.android.application'
 plugins {
     id(Plugins.application)
+    kotlin(Plugins.android)
+    id(Plugins.kotlinKapt)
     id(Plugins.kotlinAndroid)
-    kotlin(Plugins.android) 
-    id(Plugins.kotlinAndroidExtensions)
+    id(Plugins.daggerHilt)
 }
 
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
+
+    namespace = AppConfig.namespace
+    compileSdk = AppConfig.compileSdk
+    buildToolsVersion = AppConfig.buildToolsVersion
+
     defaultConfig {
-        applicationId = Config.applicationId
-        minSdkVersion(Versions.minSdkVersion)
-        targetSdkVersion(Versions.targetSdkVersion)
-        versionCode = Release.versionCode
-        versionName = Release.versionName
-        //versionName = "@ # $ % ^ * - +"
-        testInstrumentationRunner = Config.testInstrumentationRunner
+        applicationId = AppConfig.applicationId
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
     }
+
     buildTypes {
+
         getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            isMinifyEnabled = true // Enables code shrinking for the release build type.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
         }
-    }  
-    flavorDimensions += "default"
+    }
+
+    flavorDimensions += "version"
     productFlavors {
-        create("dev") {
-            versionNameSuffix = " DEV"
+        create("demo") {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
         }
-        create("prod")
-        create("sim") {
-            versionNameSuffix = " DEV-SIMULATED"
+
+        create("full") {
+            dimension = "version"
+            applicationIdSuffix = ".full"
+            versionNameSuffix = "-full"
         }
     }
 }
 
 dependencies {
-    // Core Libraries
-    implementation(CoreLibraries.kotlin)
+    kapt(AppDependencies.daggerHiltCompiler)
+    implementation(AppDependencies.appLibraries)
+    implementation(AppDependencies.retrofitLibraries)
+    implementation(project(Modules.onboarding))
+    implementation(project(Modules.core_base))
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}
 
-    // Support Libraries
-    implementation(SupportLibraries.appCompat)
-
-    // Testing
-    testImplementation(TestLibraries.jUnit)
-    androidTestImplementation(TestLibraries.runnner)
-    androidTestImplementation(TestLibraries.espressoCore)
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
