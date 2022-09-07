@@ -52,14 +52,12 @@ android {
 }
 
 dependencies {
-    // Core Libraries
-    implementation(CoreLibraries.kotlin)
-
-    // Support Libraries
-    implementation(SupportLibraries.appCompat)
-
-    // Testing
-    testImplementation(TestLibraries.jUnit)
-    androidTestImplementation(TestLibraries.runnner)
-    androidTestImplementation(TestLibraries.espressoCore)
+    kapt(AppDependencies.daggerHiltCompiler)
+    implementation(AppDependencies.appLibraries)
+    implementation(AppDependencies.retrofitLibraries)
+    implementation(project(Modules.onboarding))
+    implementation(project(Modules.core_base))
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
