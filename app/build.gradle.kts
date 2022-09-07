@@ -7,15 +7,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
+    namespace = AppConfig.namespace
+    compileSdk = AppConfig.compileSdk
+    buildToolsVersion = AppConfig.buildToolsVersion
+
     defaultConfig {
-        applicationId = Config.applicationId
-        minSdkVersion(Versions.minSdkVersion)
-        targetSdkVersion(Versions.targetSdkVersion)
-        versionCode = Release.versionCode
-        versionName = Release.versionName
-        //versionName = "@ # $ % ^ * - +"
-        testInstrumentationRunner = Config.testInstrumentationRunner
+        applicationId = AppConfig.applicationId
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
     }
     buildTypes {
         getByName ("release") {
