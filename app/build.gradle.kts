@@ -1,22 +1,22 @@
+//apply plugin: 'com.android.application'
 plugins {
     id(Plugins.application)
-    kotlin(Plugins.android)
-    id(Plugins.kotlinKapt)
     id(Plugins.kotlinAndroid)
-    id(Plugins.daggerHilt)
+    kotlin(Plugins.android) 
+    id(Plugins.kotlinAndroidExtensions)
+    id(plugins.daggerHilt)
 }
 
 android {
-    namespace = AppConfig.namespace
-    compileSdk = AppConfig.compileSdk
-    buildToolsVersion = AppConfig.buildToolsVersion
-
+    compileSdkVersion(Versions.compileSdkVersion)
     defaultConfig {
-        applicationId = AppConfig.applicationId
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        applicationId = Config.applicationId
+        minSdkVersion(Versions.minSdkVersion)
+        targetSdkVersion(Versions.targetSdkVersion)
+        versionCode = Release.versionCode
+        versionName = Release.versionName
+        //versionName = "@ # $ % ^ * - +"
+        testInstrumentationRunner = Config.testInstrumentationRunner
     }
     buildTypes {
         getByName ("release") {
